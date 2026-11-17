@@ -1,0 +1,11 @@
+
+venv/
+.venv/
+__pycache__/
+.pytest_cache/
+.git/
+*.pyc
+mlflow.db
+mlartifacts/
+mlruns/
+drift_report.html

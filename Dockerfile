@@ -1,7 +1,8 @@
-
-FROM python:3.10-slim
+FROM python:3.12-slim
 
 WORKDIR /app
+
+ENV PYTHONUNBUFFERED=1
 
 COPY requirements.txt .
 
@@ -9,11 +10,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-# Create a portable MLflow database and model artifacts
-# inside the container itself.
+# Generate a fresh MLflow registry and model
 RUN rm -f mlflow.db && \
-    rm -rf mlartifacts && \
-    python src/retrain_pipeline.py
+    rm -rf mlartifacts mlruns && \
+    python -c "from src.retrain_pipeline import train_and_register_model; train_and_register_model()"
 
 EXPOSE 8000
 

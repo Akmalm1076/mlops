@@ -8,7 +8,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 
-from monitor_drift import check_data_drift
+from src.monitor_drift import check_data_drift
 
 
 # MLflow configuration
